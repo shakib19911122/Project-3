@@ -27,6 +27,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+//set initial state
+// function Delivery() {
+//     const [deliveries, setDeliveries] = usestate([])
+//     const [formObject, setFormObject] = useState({})
+
+//     useEffect(() => {
+//         loadDeliveries()
+//     }, [])
+
+//     function loadDeliveries() {
+//         API.getDeliveries()
+//             .then(res =>
+//                 setDeliveries(res.data))
+//             .catch(err => console.log(err));
+//     };
+
+function handleInputChange(event){
+    console.log(event)
+}
+
 function getSteps() {
     return ['Pick up Address', 'Delivery Address', 'Parcel Info'];
 }
@@ -35,9 +55,14 @@ function getStepContent(step) {
     switch (step) {
         case 0:
             return (
-                <div>
+                <form>    
                     <div>
-                        <TextField required id="standard-required" label="Required" defaultValue="Pick-up address" />
+                        <TextField 
+                            onChange = {handleInputChange}
+                            required id="standard-required" 
+                            label="Required" 
+                            placeholder="Pick-up address" 
+                        />
                     </div>
                     <div>
                         <TextField
@@ -49,13 +74,16 @@ function getStepContent(step) {
                             }}
                         />
                     </div>
-                </div>
+                </form>
             );
         case 1:
             return (
                 <div>
                     <div>
-                        <TextField required id="standard-required" label="Required" defaultValue="Delivery address" />
+                        <TextField required id="standard-required" 
+                        label="Required" 
+                        placeholder="Delivery address" 
+                        />
                     </div>
                     <div>
                         <TextField
@@ -73,11 +101,14 @@ function getStepContent(step) {
             return (
                 <div>
                     <div>
-                        <Dimension/>
+                        <Dimension />
                     </div>
                     <div>
-                        <TimeFrame/>
-                        <TextField required id="standard-required" label="additional Info" defaultValue=" " />
+                        <TimeFrame />
+                        <TextField 
+                        required id="standard-required" 
+                        label="additional Info" 
+                        placeholder="eg. leave at safe place" />
                     </div>
 
                 </div>
@@ -120,7 +151,7 @@ export default function VerticalLinearStepper() {
                                         className={classes.button}
                                     >
                                         Back
-                  </Button>
+                                    </Button>
                                     <Button
                                         variant="contained"
                                         color="primary"

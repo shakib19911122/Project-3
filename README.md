@@ -27,3 +27,24 @@ Then I send another notification to the Sender
 
 ### React CSS Frame work 
 - Material UI
+
+
+
+
+note for VerticalStepper
+
+//set initial state
+// function Delivery() {
+//     const [deliveries, setDeliveries] = usestate([])
+//     const [formObject, setFormObject] = useState({})
+
+//     useEffect(() => {
+//         loadDeliveries()
+//     }, [])
+
+//     function loadDeliveries() {
+//         API.getDeliveries()
+//             .then(res =>
+//                 setDeliveries(res.data))
+//             .catch(err => console.log(err));
+//     };
