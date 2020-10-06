@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+// import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Dimension from "../Dimension"
 import TimeFrame from "../TimeFrame"
+import API from "../../utils/API"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,47 +29,94 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-//set initial state
-// function Delivery() {
-//     const [deliveries, setDeliveries] = usestate([])
-//     const [formObject, setFormObject] = useState({})
+     //set initial state
+//      const [deliveries, setDeliveries] = useState([])
+    //  const [formObject, setFormObject] = useState({})
+ 
+//      useEffect(() => {
+//          loadDeliveries()
+//      }, [])
+ 
+//      function loadDeliveries() {
+//          API.getDeliveries()
+//              .then(res =>
+//                  setDeliveries(res.data))
+//              .catch(err => console.log(err));
+//      };
+ 
+//  function handleInputChange(event){
+//      console.log(event)
+//      const { label, value } = event.target;
+//      setFormObject({...formObject, [label]: value})
+//  };
+//  function handleFormSubmit(event){
+//      event.preventDefault();
+//      API.saveDelivery({
+//          address: formObject.address,
+//          postcode: formObject.postcode
 
-//     useEffect(() => {
-//         loadDeliveries()
-//     }, [])
+//      })
+//      .then(res => loadDeliveries())
+//      .cat(err => console.log(err))
 
-//     function loadDeliveries() {
-//         API.getDeliveries()
-//             .then(res =>
-//                 setDeliveries(res.data))
-//             .catch(err => console.log(err));
-//     };
+//  }
 
-function handleInputChange(event){
-    console.log(event)
-}
+
+export default function VerticalLinearStepper() {
+    const [formObject, setFormObject] = useState({})
+ 
+  
+     
+     function handleInputChange(event){
+         console.log(event)
+         const { label, value } = event.target;
+         setFormObject({...formObject, [label]: value})
+     };
+
+
+    const classes = useStyles();
+    const [activeStep, setActiveStep] = React.useState(0);
+    const steps = getSteps();
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
 
 function getSteps() {
     return ['Pick up Address', 'Delivery Address', 'Parcel Info'];
 }
 
 function getStepContent(step) {
+   
+
+  
     switch (step) {
         case 0:
             return (
                 <form>    
                     <div>
                         <TextField 
-                            onChange = {handleInputChange}
+                            onChange={handleInputChange}
                             required id="standard-required" 
-                            label="Required" 
+                            label="Address" 
                             placeholder="Pick-up address" 
+                            value={formObject.Address}
                         />
+                        
                     </div>
                     <div>
                         <TextField
                             id="standard-number"
-                            label="Postcode*"
+                            label="Postcode"
                             type="number"
                             InputLabelProps={{
                                 shrink: true,
@@ -81,14 +130,14 @@ function getStepContent(step) {
                 <div>
                     <div>
                         <TextField required id="standard-required" 
-                        label="Required" 
+                        label="Address" 
                         placeholder="Delivery address" 
                         />
                     </div>
                     <div>
                         <TextField
                             id="standard-number"
-                            label="Postcode*"
+                            label="Postcode"
                             type="number"
                             InputLabelProps={{
                                 shrink: true,
@@ -107,7 +156,7 @@ function getStepContent(step) {
                         <TimeFrame />
                         <TextField 
                         required id="standard-required" 
-                        label="additional Info" 
+                        label="Additional-Info" 
                         placeholder="eg. leave at safe place" />
                     </div>
 
@@ -118,22 +167,7 @@ function getStepContent(step) {
     }
 }
 
-export default function VerticalLinearStepper() {
-    const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const steps = getSteps();
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+    
 
     return (
         <div className={classes.root}>
@@ -142,7 +176,7 @@ export default function VerticalLinearStepper() {
                     <Step key={label}>
                         <StepLabel>{label}</StepLabel>
                         <StepContent>
-                            <Typography>{getStepContent(index)}</Typography>
+                            <Typography component="span">{getStepContent(index)}</Typography>
                             <div className={classes.actionsContainer}>
                                 <div>
                                     <Button

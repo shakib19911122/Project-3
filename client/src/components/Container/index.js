@@ -30,8 +30,7 @@ export default function Container(props) {
         <div className={classes.root}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={10}>
-                    <Paper className={classes.paper}>{props.text}{props.children} </Paper>
-                    
+                    <Paper className={classes.paper}>{props.children} </Paper>
                 </Grid>
             </Grid>
         </div>
