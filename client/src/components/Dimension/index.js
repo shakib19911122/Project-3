@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -13,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Dimension() {
+export default function Dimension(props) {
   const classes = useStyles();
+  console.log(props.id)
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -22,7 +25,9 @@ export default function Dimension() {
       <div>
       
         <TextField
-          id="outlined-number"
+          onChange={props.onChange}
+          required
+          id="length"
           label="Length (cm)"
           type="number"
           InputLabelProps={{
@@ -31,7 +36,9 @@ export default function Dimension() {
           variant="outlined"
         />
           <TextField
-          id="outlined-number"
+          onChange={props.onChange}
+          required
+          id="width"
           label="Width (cm)"
           type="number"
           InputLabelProps={{
@@ -40,7 +47,9 @@ export default function Dimension() {
           variant="outlined"
         />
           <TextField
-          id="outlined-number"
+          onChange={props.onChange}
+          required
+          id="height"
           label="Height (cm)"
           type="number"
           InputLabelProps={{
@@ -49,7 +58,9 @@ export default function Dimension() {
           variant="outlined"
         />
          <TextField
-          id="outlined-number"
+          onChange={props.onChange}
+          required
+          id="weight"
           label="Weight (kg)"
           type="number"
           InputLabelProps={{

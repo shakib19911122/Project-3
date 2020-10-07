@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Dimension from "../Dimension"
 import TimeFrame from "../TimeFrame"
-import API from "../../utils/API"
+// import API from "../../utils/API"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,21 +29,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-     //set initial state
+//set initial state
 //      const [deliveries, setDeliveries] = useState([])
-    //  const [formObject, setFormObject] = useState({})
- 
+//  const [formObject, setFormObject] = useState({})
+
 //      useEffect(() => {
 //          loadDeliveries()
 //      }, [])
- 
+
 //      function loadDeliveries() {
 //          API.getDeliveries()
 //              .then(res =>
 //                  setDeliveries(res.data))
 //              .catch(err => console.log(err));
 //      };
- 
+
 //  function handleInputChange(event){
 //      console.log(event)
 //      const { label, value } = event.target;
@@ -63,15 +63,50 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function VerticalLinearStepper() {
+
+    //set initial state
+    // const [deliveries, setDeliveries] = useState([])
     const [formObject, setFormObject] = useState({})
- 
-  
-     
-     function handleInputChange(event){
-         console.log(event)
-         const { label, value } = event.target;
-         setFormObject({...formObject, [label]: value})
-     };
+
+    //load all deliveries and store them in setDeliveries
+    // useEffect(() => {
+    //     loadDeliveries()
+    // }, [])
+
+    // Loads all deliveries and sets them to deliveries
+    // function loadDeliveries() {
+    //     API.getDeliveries()
+    //         .then(res =>
+    //             setDeliveries(res.data)
+    //         )
+    //         .catch(err => console.log(err));
+    // };
+
+
+// Handles updating component state when the user types into the input field
+    function handleInputChange(event) {
+        // console.log(event.target)
+        console.log(event.target.value)
+        console.log(event.target.id)
+        const { id, value } = event.target;
+        setFormObject({ ...formObject, [id]: value })
+        console.log(formObject)
+    };
+
+     function handleFormSubmit(event){
+             event.preventDefault();
+             console.log(formObject)
+
+            //  if(formObject.Address && formObject.postcode)
+            //  API.saveDelivery({
+            //      address: formObject.address,
+            //      postcode: formObject.postcode
+        
+            //  })
+            // //  .then(res => loadDeliveries())
+            //  .catch(err => console.log(err))
+        
+         }
 
 
     const classes = useStyles();
@@ -91,83 +126,97 @@ export default function VerticalLinearStepper() {
     };
 
 
-function getSteps() {
-    return ['Pick up Address', 'Delivery Address', 'Parcel Info'];
-}
-
-function getStepContent(step) {
-   
-
-  
-    switch (step) {
-        case 0:
-            return (
-                <form>    
-                    <div>
-                        <TextField 
-                            onChange={handleInputChange}
-                            required id="standard-required" 
-                            label="Address" 
-                            placeholder="Pick-up address" 
-                            value={formObject.Address}
-                        />
-                        
-                    </div>
-                    <div>
-                        <TextField
-                            id="standard-number"
-                            label="Postcode"
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
-                </form>
-            );
-        case 1:
-            return (
-                <div>
-                    <div>
-                        <TextField required id="standard-required" 
-                        label="Address" 
-                        placeholder="Delivery address" 
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="standard-number"
-                            label="Postcode"
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
-                </div>
-            );
-        case 2:
-            return (
-                <div>
-                    <div>
-                        <Dimension />
-                    </div>
-                    <div>
-                        <TimeFrame />
-                        <TextField 
-                        required id="standard-required" 
-                        label="Additional-Info" 
-                        placeholder="eg. leave at safe place" />
-                    </div>
-
-                </div>
-            );
-        default:
-            return 'Unknown step';
+    function getSteps() {
+        return ['Pick up Address', 'Delivery Address', 'Parcel Info'];
     }
-}
 
-    
+    function getStepContent(step) {
+
+        switch (step) {
+            case 0:
+                return (
+                    <form>
+                        <div>
+                            <TextField
+                                onChange={handleInputChange}
+                                required 
+                                id="pickUpAddress"
+                                label="Address"
+                                placeholder="Pick-up address"
+                                value={formObject.Address}
+                                
+                            />
+
+                        </div>
+                        <div>
+                            <TextField
+                                onChange={handleInputChange}
+                                required
+                                id="pickUpPostcode"
+                                label="Postcode"
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </div>
+                    </form>
+                );
+            case 1:
+                return (
+                    <div>
+                        <div>
+                            <TextField 
+                                onChange={handleInputChange}
+                                required 
+                                id="deliveryAddress"
+                                label="Address"
+                                placeholder="Delivery address"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                onChange={handleInputChange}
+                                required
+                                id="deliveryPostcode"
+                                label="Postcode"
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </div>
+                    </div>
+                );
+            case 2:
+                return (
+                    <div>
+                        <div>
+                            <Dimension 
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
+                            <TimeFrame
+                                onChange={handleInputChange}
+                                required 
+                                id="deliveryTime"
+                            />
+                            <TextField
+                                onChange={handleInputChange}
+                                id="info"
+                                label="Additional-Info"
+                                placeholder="eg. leave at safe place" />
+                        </div>
+
+                    </div>
+                );
+            default:
+                return 'Unknown step';
+        }
+    }
+
+
 
     return (
         <div className={classes.root}>
@@ -189,7 +238,8 @@ function getStepContent(step) {
                                     <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={handleNext}
+                                        onClick={activeStep === steps.length - 1 ? handleFormSubmit : handleNext }
+                                        // onClick={handleNext}
                                         className={classes.button}
                                     >
                                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
@@ -202,9 +252,9 @@ function getStepContent(step) {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} className={classes.resetContainer}>
-                    <Typography>Now jus sit tight and wait for us to assigne Driver</Typography>
+                    <Typography>Sit tight and wait for us to assign Driver</Typography>
                     <Button onClick={handleReset} className={classes.button}>
-                        Reset
+                        New Delivery
           </Button>
                 </Paper>
             )}
