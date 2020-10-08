@@ -32,8 +32,18 @@ export default function TimeFrame(props) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={time}
-          onChange={handleChange}
-          onClick={props.onChange}
+          // onChange={props.onChange}
+          onChange={(event) => {
+            const mockEvent = {
+              target: {
+                id: props.id,
+                value: event.target.value
+              }
+            };
+
+            props.onChange(mockEvent)
+          }}
+          id={props.id}
         >
           <MenuItem  value={2}>ASAP</MenuItem>
           <MenuItem  value={4}>4 Hours</MenuItem>

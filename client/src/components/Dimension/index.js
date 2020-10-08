@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dimension(props) {
   const classes = useStyles();
-  console.log(props.id)
+  
 
   return (
     <form className={classes.root} noValidate autoComplete="off">

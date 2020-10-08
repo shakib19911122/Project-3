@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Dimension from "../Dimension"
 import TimeFrame from "../TimeFrame"
+import { Container } from "@material-ui/core";
 // import API from "../../utils/API"
 
 const useStyles = makeStyles((theme) => ({
@@ -85,7 +86,7 @@ export default function VerticalLinearStepper() {
 
 // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
-        // console.log(event.target)
+        console.log(event)
         console.log(event.target.value)
         console.log(event.target.id)
         const { id, value } = event.target;
@@ -93,20 +94,7 @@ export default function VerticalLinearStepper() {
         console.log(formObject)
     };
 
-     function handleFormSubmit(event){
-             event.preventDefault();
-             console.log(formObject)
-
-            //  if(formObject.Address && formObject.postcode)
-            //  API.saveDelivery({
-            //      address: formObject.address,
-            //      postcode: formObject.postcode
-        
-            //  })
-            // //  .then(res => loadDeliveries())
-            //  .catch(err => console.log(err))
-        
-         }
+ 
 
 
     const classes = useStyles();
@@ -114,8 +102,24 @@ export default function VerticalLinearStepper() {
     const steps = getSteps();
 
     const handleNext = () => {
+        console.log('Handle next step')
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+
     };
+    function handleFormSubmit(event){
+        event.preventDefault();
+        console.log(formObject)
+        
+       //  if(formObject.Address && formObject.postcode)
+       //  API.saveDelivery({
+       //      address: formObject.address,
+       //      postcode: formObject.postcode
+   
+       //  })
+       // //  .then(res => loadDeliveries())
+       //  .catch(err => console.log(err))
+       handleNext()
+    }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -191,6 +195,7 @@ export default function VerticalLinearStepper() {
             case 2:
                 return (
                     <div>
+                        
                         <div>
                             <Dimension 
                                 onChange={handleInputChange}
@@ -208,7 +213,7 @@ export default function VerticalLinearStepper() {
                                 label="Additional-Info"
                                 placeholder="eg. leave at safe place" />
                         </div>
-
+                        
                     </div>
                 );
             default:
