@@ -3,17 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const passport = require("passport");
 
-//const passport = require("./config/passport");
 
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors())
-//app.use(require("./routes/api/index"));
-// app.use(passport.initialize());
-// app.use(passport.session());
+// app.use(require("./routes/api/index"));
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -24,6 +22,10 @@ app.use(cors())
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/delivery");
+const user = require("./models/user");
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
 
 app.get('/packages', function(req, res) {
   res.send([

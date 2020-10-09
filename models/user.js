@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const user = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
 
     email: {
         type: String,
@@ -14,8 +14,8 @@ const user = new mongoose.Schema({
     userType: {
         required: true,
         type: [
-            sender,
-            driver
+            "sender",
+            "driver"
         ]
     }
 
