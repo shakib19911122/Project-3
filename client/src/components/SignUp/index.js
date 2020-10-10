@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import UserSelect from "../UserSelect"
+import UserSelect from "../UserSelect";
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -49,6 +50,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [sighUpEmail, setSignUpEmail] = useState("");
+  const [sighUpPassword, setSignUpPassword] = useState("");
+  const signUpUser = () => {
+    axios({
+      method: "POST",
+      data: {
+        email: sighUpEmail,
+        password: sighUpPassword,
+      },
+      withCredentials: true,
+      url: "http//localhost:4000/signup/",
+    }).then((res) => console.log(res));
+  };
+ 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -87,6 +102,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onchange={e => setSignUpEmail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -98,6 +114,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onchange={e => setSignUpPassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -111,6 +128,7 @@ export default function SignUp() {
             <UserSelect />
           </Grid>
           <Button
+            onClick={signUpUser}
             type="submit"
             fullWidth
             variant="contained"

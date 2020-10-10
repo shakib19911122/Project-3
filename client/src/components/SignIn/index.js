@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -49,6 +50,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [data, setData] = useState(null);
+  const login = () => {
+    axios({
+      method: "POST",
+      data: {
+        email: loginEmail,
+        password: loginPassword
+      },
+       withCredentials: true,
+       url: "http//localhost:4000/login/",
+        }).then((res) => console.log(res));
+        getUser()
+    };
+  
+  const getUser = () =>{
+    axios({
+      method: "GET",
+       withCredentials: true,
+       url: "http//localhost:4000/senderui/",
+        }).then((res) => {
+          setData(res.data);
+          console.log(res);
+
+        })
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -64,6 +92,7 @@ export default function SignIn() {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
+              onchange={e => setLoginEmail(e.target.value)}
               variant="outlined"
               margin="normal"
               required
@@ -75,6 +104,7 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+              onchange={e => setLoginPassword(e.target.value)}
               variant="outlined"
               margin="normal"
               required
@@ -86,6 +116,7 @@ export default function SignIn() {
               autoComplete="current-password"
             />
             <Button
+              onClick={login}
               type="submit"
               fullWidth
               variant="contained"
