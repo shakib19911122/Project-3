@@ -11,22 +11,31 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Dimension from "../Dimension"
 import TimeFrame from "../TimeFrame"
-import { Container } from "@material-ui/core";
+// import { Container } from "@material-ui/core";
 // import API from "../../utils/API"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        width: '80%', 
+        opacity: '0.8'
     },
     button: {
         marginTop: theme.spacing(1),
         marginRight: theme.spacing(1),
+        color: "lightgreen",
+        backgroundColor: "black"
+        
+        
     },
     actionsContainer: {
         marginBottom: theme.spacing(2),
+        
+        
+        
     },
     resetContainer: {
         padding: theme.spacing(3),
+        backgroundColor: "lightgreen"
     },
 }));
 
@@ -86,12 +95,12 @@ export default function VerticalLinearStepper() {
 
 // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
-        console.log(event)
-        console.log(event.target.value)
-        console.log(event.target.id)
-        const { id, value } = event.target;
-        setFormObject({ ...formObject, [id]: value })
-        console.log(formObject)
+        // console.log(event)
+        // console.log(event.target.value)
+        // console.log(event.target.id)
+        const { name, value } = event.target;
+        setFormObject({ ...formObject, [name]: value })
+        // console.log(formObject)
     };
 
  
@@ -102,7 +111,7 @@ export default function VerticalLinearStepper() {
     const steps = getSteps();
 
     const handleNext = () => {
-        console.log('Handle next step')
+        // console.log('Handle next step')
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
     };
@@ -142,6 +151,7 @@ export default function VerticalLinearStepper() {
                     <form>
                         <div>
                             <TextField
+                                name="PickUpAddress"
                                 onChange={handleInputChange}
                                 required 
                                 id="pickUpAddress"
@@ -154,6 +164,7 @@ export default function VerticalLinearStepper() {
                         </div>
                         <div>
                             <TextField
+                                name="PickUpPostcode"
                                 onChange={handleInputChange}
                                 required
                                 id="pickUpPostcode"
@@ -171,6 +182,7 @@ export default function VerticalLinearStepper() {
                     <div>
                         <div>
                             <TextField 
+                                name="DeliveryUpAddress"
                                 onChange={handleInputChange}
                                 required 
                                 id="deliveryAddress"
@@ -180,6 +192,7 @@ export default function VerticalLinearStepper() {
                         </div>
                         <div>
                             <TextField
+                                name="DeliveryPostcode"
                                 onChange={handleInputChange}
                                 required
                                 id="deliveryPostcode"
@@ -203,11 +216,13 @@ export default function VerticalLinearStepper() {
                         </div>
                         <div>
                             <TimeFrame
+                                name="timeFrame"
                                 onChange={handleInputChange}
                                 required 
                                 id="deliveryTime"
                             />
                             <TextField
+                                name="info"
                                 onChange={handleInputChange}
                                 id="info"
                                 label="Additional-Info"

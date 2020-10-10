@@ -15,16 +15,22 @@ import Menu from '@material-ui/core/Menu';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    
   },
   title: {
     flexGrow: 1,
   },
-  gutters: {
-    color: "black"
-  }
+  root2: {
+    backgroundColor: '#1B1B1B',
+    opacity: "0.9"
+  },
+ 
+ 
 }));
 
 export default function NavBar() {
@@ -49,11 +55,12 @@ export default function NavBar() {
     <div className={classes.root}>
       <FormGroup>
         <FormControlLabel
+          className={classes.switch}
           control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
           label={auth ? 'Logout' : 'Login'}
         />
       </FormGroup>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root2}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />

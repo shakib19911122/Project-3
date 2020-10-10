@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
         backgroundColor: "#696969",
-        height: 300,
+        height: 400,
+        width: 400,
         opacity: "0.8"
-
     },
 }));
 
@@ -28,8 +28,11 @@ export default function Container(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={10}>
+            <Grid 
+            container spacing={3}
+            direction="row"
+            >
+                <Grid item xs={12} sm={4}>
                     <Paper className={classes.paper}>{props.children} </Paper>
                 </Grid>
             </Grid>
