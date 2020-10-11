@@ -60,7 +60,7 @@ export default function SignUp() {
         password: sighUpPassword,
       },
       withCredentials: true,
-      url: "http//localhost:4000/signup/",
+      url: "http//localhost:3000/signup/",
     }).then((res) => console.log(res));
   };
  
@@ -102,7 +102,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onchange={e => setSignUpEmail(e.target.value)}
+                onChange={e => setSignUpEmail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -114,7 +114,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onchange={e => setSignUpPassword(e.target.value)}
+                onChange={e => setSignUpPassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth

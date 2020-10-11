@@ -61,7 +61,7 @@ export default function SignIn() {
         password: loginPassword
       },
        withCredentials: true,
-       url: "http//localhost:4000/login/",
+       url: "http//localhost:3000/login/",
         }).then((res) => console.log(res));
         getUser()
     };
@@ -70,7 +70,7 @@ export default function SignIn() {
     axios({
       method: "GET",
        withCredentials: true,
-       url: "http//localhost:4000/senderui/",
+       url: "http//localhost:3000/senderui/",
         }).then((res) => {
           setData(res.data);
           console.log(res);
@@ -92,7 +92,7 @@ export default function SignIn() {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
-              onchange={e => setLoginEmail(e.target.value)}
+              onChange={e => setLoginEmail(e.target.value)}
               variant="outlined"
               margin="normal"
               required
@@ -104,7 +104,7 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
-              onchange={e => setLoginPassword(e.target.value)}
+              onChange={e => setLoginPassword(e.target.value)}
               variant="outlined"
               margin="normal"
               required
