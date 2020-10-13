@@ -14,10 +14,12 @@ import TimeFrame from "../TimeFrame"
 // import { Container } from "@material-ui/core";
 // import API from "../../utils/API"
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '80%', 
-        opacity: '0.8'
+        opacity: '0.8',
+        maxHeight: "300"
     },
     button: {
         marginTop: theme.spacing(1),
@@ -39,60 +41,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-//set initial state
-//      const [deliveries, setDeliveries] = useState([])
-//  const [formObject, setFormObject] = useState({})
-
-//      useEffect(() => {
-//          loadDeliveries()
-//      }, [])
-
-//      function loadDeliveries() {
-//          API.getDeliveries()
-//              .then(res =>
-//                  setDeliveries(res.data))
-//              .catch(err => console.log(err));
-//      };
-
-//  function handleInputChange(event){
-//      console.log(event)
-//      const { label, value } = event.target;
-//      setFormObject({...formObject, [label]: value})
-//  };
-//  function handleFormSubmit(event){
-//      event.preventDefault();
-//      API.saveDelivery({
-//          address: formObject.address,
-//          postcode: formObject.postcode
-
-//      })
-//      .then(res => loadDeliveries())
-//      .cat(err => console.log(err))
-
-//  }
-
-
 export default function VerticalLinearStepper() {
 
-    //set initial state
-    // const [deliveries, setDeliveries] = useState([])
     const [formObject, setFormObject] = useState({})
-
-    //load all deliveries and store them in setDeliveries
-    // useEffect(() => {
-    //     loadDeliveries()
-    // }, [])
-
-    // Loads all deliveries and sets them to deliveries
-    // function loadDeliveries() {
-    //     API.getDeliveries()
-    //         .then(res =>
-    //             setDeliveries(res.data)
-    //         )
-    //         .catch(err => console.log(err));
-    // };
-
-
 // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
         // console.log(event)
@@ -118,15 +69,7 @@ export default function VerticalLinearStepper() {
     function handleFormSubmit(event){
         event.preventDefault();
         console.log(formObject)
-        
-       //  if(formObject.Address && formObject.postcode)
-       //  API.saveDelivery({
-       //      address: formObject.address,
-       //      postcode: formObject.postcode
-   
-       //  })
-       // //  .then(res => loadDeliveries())
-       //  .catch(err => console.log(err))
+      
        handleNext()
     }
 

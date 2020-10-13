@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
         backgroundColor: "#696969",
@@ -29,7 +29,7 @@ export default function Container(props) {
     return (
         <div className={classes.root}>
             <Grid 
-            container spacing={3}
+            container spacing={1}
             direction="row"
             >
                 <Grid item xs={12} sm={4}>

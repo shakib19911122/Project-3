@@ -53,7 +53,8 @@ export default function SignIn() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [data, setData] = useState(null);
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault()
     axios({
       method: "POST",
       data: {
@@ -61,7 +62,7 @@ export default function SignIn() {
         password: loginPassword
       },
        withCredentials: true,
-       url: "http//localhost:3000/login/",
+       url: "/login",
         }).then((res) => console.log(res));
         getUser()
     };
@@ -70,7 +71,7 @@ export default function SignIn() {
     axios({
       method: "GET",
        withCredentials: true,
-       url: "http//localhost:3000/senderui/",
+       url: "/senderui",
         }).then((res) => {
           setData(res.data);
           console.log(res);

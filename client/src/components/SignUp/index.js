@@ -52,15 +52,17 @@ export default function SignUp() {
   const classes = useStyles();
   const [sighUpEmail, setSignUpEmail] = useState("");
   const [sighUpPassword, setSignUpPassword] = useState("");
-  const signUpUser = () => {
+  
+  const signUpUser = (e) => {
+    e.preventDefault()
     axios({
-      method: "POST",
+      method: "post",
       data: {
         email: sighUpEmail,
         password: sighUpPassword,
       },
       withCredentials: true,
-      url: "http//localhost:3000/signup/",
+      url: "/signup",
     }).then((res) => console.log(res));
   };
  
@@ -77,29 +79,7 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
+     
             <Grid item xs={12}>
               <TextField
                 onChange={e => setSignUpEmail(e.target.value)}
@@ -107,9 +87,9 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                label="email"
+                placeholder="email"
+                // autoComplete="email"
               />
             </Grid>
             <Grid item xs={12}>
@@ -118,14 +98,16 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
-                label="Password"
+                label="password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                // autoComplete="current-password"
               />
             </Grid>
-            <UserSelect />
+            <UserSelect 
+            onChange={e => setSignUpPassword(e.target.value)}
+            
+            />
           </Grid>
           <Button
             onClick={signUpUser}
