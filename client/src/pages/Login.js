@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 
 function Copyright() {
   return (
@@ -24,7 +26,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -47,12 +48,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
 export default function SignIn() {
   const classes = useStyles();
+  // const { developerState, setDeveloperState } = useContext(DeveloperContext);
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [data, setData] = useState(null);
+  const history = useHistory()
+
   const login = (e) => {
     e.preventDefault()
     axios({
@@ -74,6 +77,7 @@ export default function SignIn() {
        url: "/senderui/",
         }).then((res) => {
           setData(res.data);
+          history.push('/senderui')
           console.log(res);
 
         })
@@ -103,6 +107,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              // onChange={handleUserChange}
             />
             <TextField
               onChange={e => setLoginPassword(e.target.value)}
@@ -115,6 +120,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              // onChange={handlePassChange}
             />
             <Button
               onClick={login}
@@ -123,6 +129,7 @@ export default function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              // onClick={handleSubmit}
             >
               Sign In
             </Button>
@@ -142,3 +149,10 @@ export default function SignIn() {
     </Grid>
   );
 }
+
+
+
+
+
+
+

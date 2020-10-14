@@ -14,9 +14,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={SignIn} />
         <Route exact path="/Signup" component={SignUp} />
-        {/* will need to do the below based on ID */}
-        <Route exact path="/SenderUI" component={SenderUI} /> 
-        <Route exact path="/DriverUI" component={DriverUI} />
+        <Route exact path="/senderui" component={SenderUI} /> 
+        <Route exact path="/driverui" component={DriverUI} />
         <Route exact component={NoMatch} />
       </Switch>
     </div>
