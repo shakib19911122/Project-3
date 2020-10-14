@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "../NavBar"
-import Container from "../Container"
+import NavBar from "../components/NavBar"
+import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
-import VerticalLinearStepper from "../VerticalStepper"
+import VerticalLinearStepper from "../components/VerticalStepper"
 
 
 

@@ -2,8 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const PORT = process.env.PORT || 3001;
-// const passport = require("passport");
-// const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -84,24 +82,6 @@ app.get("/senderui", (req, res) => {
   res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
 });
 //-----------------------End of Routes----------------------------------
-
-// app.get('/packages', function(req, res) {
-//   res.send([
-//     {
-//       name: 'Package 1'
-//     },
-//     {
-//       name: 'Package 2'
-//     }
-//   ]);
-// })
-
-// app.post('/packages', function(req, res) {
-//   res.send('Saving successful');
-// })
-
-
-
 
 // Start the API server
 app.listen(PORT, function() {

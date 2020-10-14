@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import UserSelect from "../UserSelect";
+import UserSelect from "../components/UserSelect";
 import axios from 'axios';
 
 function Copyright() {

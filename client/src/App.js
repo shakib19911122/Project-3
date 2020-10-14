@@ -1,9 +1,9 @@
 import React from "react";
 // import Testing from "./components/Testing/index";
-import SignUp from "./components/SignUp";
-import SignIn from "./components/SignIn";
-import SenderUI from "./components/SenderUI";
-import DriverUI from "./components/DriverUI";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/Login";
+import SenderUI from "./pages/Sender";
+import DriverUI from "./pages/Driver";
 import NoMatch from "./components/NoMatch"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
