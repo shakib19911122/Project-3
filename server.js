@@ -2,14 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const PORT = process.env.PORT || 3001;
-const passport = require("passport");
-const passportLocal = require('passport-local').Strategy;
+// const passport = require("passport");
+// const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const User = require("./models/user")
-
+const User = require("./models/user");
+const passport = require('./config/passport');
 const app = express();
 
 
@@ -37,7 +37,7 @@ app.use(session({
 app.use(cookieParser("secretcode"))
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport);
+
 //-------------------End of Middleware-------------------------
 
 
