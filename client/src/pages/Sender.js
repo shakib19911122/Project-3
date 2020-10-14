@@ -2,11 +2,15 @@ import React from "react";
 import NavBar from "../components/NavBar"
 import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
-import VerticalLinearStepper from "../components/VerticalStepper"
+import { useHistory } from "react-router-dom";
 
 
 
 function SenderUI() {
+  const history = useHistory()
+  const addDelivery = () =>{
+    history.push("/adddeliveries")
+  }
 
   return (
     <div>
@@ -20,7 +24,10 @@ function SenderUI() {
         <Container>
           <div>
           <h3>Delivery</h3>
-          <VerticalLinearStepper />
+          <button
+          onClick={addDelivery}
+          >add delivery</button>
+         
           </div>
         </Container>
         <Container>

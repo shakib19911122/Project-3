@@ -11,6 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import {useHistory} from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,9 +40,11 @@ export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const history = useHistory()
 
-  const handleChange = (event) => {
+  const handleLoggedOut = (event) => {
     setAuth(event.target.checked);
+    history.push('/')
   };
 
   const handleMenu = (event) => {
@@ -56,7 +60,7 @@ export default function NavBar() {
       <FormGroup>
         <FormControlLabel
           className={classes.switch}
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+          control={<Switch checked={auth} onChange={handleLoggedOut} aria-label="login switch" />}
           label={auth ? 'Logout' : 'Login'}
         />
       </FormGroup>

@@ -13,11 +13,12 @@ import Dimension from "../Dimension"
 import TimeFrame from "../TimeFrame"
 // import { Container } from "@material-ui/core";
 // import API from "../../utils/API"
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '80%', 
+        width: '80%',
         opacity: '0.8',
         maxHeight: "300"
     },
@@ -26,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         color: "lightgreen",
         backgroundColor: "black"
-        
-        
+
+
     },
     actionsContainer: {
         marginBottom: theme.spacing(2),
-        
-        
-        
+
+
+
     },
     resetContainer: {
         padding: theme.spacing(3),
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export default function VerticalLinearStepper() {
 
     const [formObject, setFormObject] = useState({})
-// Handles updating component state when the user types into the input field
+    // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
         // console.log(event)
         // console.log(event.target.value)
@@ -54,7 +55,7 @@ export default function VerticalLinearStepper() {
         // console.log(formObject)
     };
 
- 
+    const history = useHistory()
 
 
     const classes = useStyles();
@@ -64,13 +65,16 @@ export default function VerticalLinearStepper() {
     const handleNext = () => {
         // console.log('Handle next step')
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
     };
-    function handleFormSubmit(event){
+    const backToHomePage = () =>{
+        history.push("/senderui")
+
+    }
+    function handleFormSubmit(event) {
         event.preventDefault();
         console.log(formObject)
-      
-       handleNext()
+
+        handleNext()
     }
 
     const handleBack = () => {
@@ -96,12 +100,12 @@ export default function VerticalLinearStepper() {
                             <TextField
                                 name="PickUpAddress"
                                 onChange={handleInputChange}
-                                required 
+                                required
                                 id="pickUpAddress"
                                 label="Address"
                                 placeholder="Pick-up address"
                                 value={formObject.Address}
-                                
+
                             />
 
                         </div>
@@ -124,10 +128,10 @@ export default function VerticalLinearStepper() {
                 return (
                     <div>
                         <div>
-                            <TextField 
+                            <TextField
                                 name="DeliveryUpAddress"
                                 onChange={handleInputChange}
-                                required 
+                                required
                                 id="deliveryAddress"
                                 label="Address"
                                 placeholder="Delivery address"
@@ -151,9 +155,9 @@ export default function VerticalLinearStepper() {
             case 2:
                 return (
                     <div>
-                        
+
                         <div>
-                            <Dimension 
+                            <Dimension
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -161,7 +165,7 @@ export default function VerticalLinearStepper() {
                             <TimeFrame
                                 name="timeFrame"
                                 onChange={handleInputChange}
-                                required 
+                                required
                                 id="deliveryTime"
                             />
                             <TextField
@@ -171,7 +175,7 @@ export default function VerticalLinearStepper() {
                                 label="Additional-Info"
                                 placeholder="eg. leave at safe place" />
                         </div>
-                        
+
                     </div>
                 );
             default:
@@ -201,7 +205,7 @@ export default function VerticalLinearStepper() {
                                     <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={activeStep === steps.length - 1 ? handleFormSubmit : handleNext }
+                                        onClick={activeStep === steps.length - 1 ? handleFormSubmit : handleNext}
                                         // onClick={handleNext}
                                         className={classes.button}
                                     >
@@ -218,7 +222,10 @@ export default function VerticalLinearStepper() {
                     <Typography>Sit tight and wait for us to assign Driver</Typography>
                     <Button onClick={handleReset} className={classes.button}>
                         New Delivery
-          </Button>
+                    </Button>
+                    <Button onClick={backToHomePage} className={classes.button}>
+                        Home Page
+                    </Button>
                 </Paper>
             )}
         </div>
