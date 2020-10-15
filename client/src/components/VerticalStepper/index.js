@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -14,6 +13,7 @@ import TimeFrame from "../TimeFrame"
 // import { Container } from "@material-ui/core";
 // import API from "../../utils/API"
 import { useHistory } from "react-router-dom";
+import axios from "axios"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function VerticalLinearStepper() {
+    const [pickUpAddress, setPickUpAddress] = useState("");
+    const [pickUpPostcode, setPickUpPostcode] = useState("");
+    const [deliveryAddress, setDeliveryAddress] = useState("");
+    const [deliveryPostcode, setDeliveryPostcode] = useState("");
+    const [additionalInfo, setAdditionalInfo] = useState("");
+   
 
     const [formObject, setFormObject] = useState({})
     // Handles updating component state when the user types into the input field
@@ -55,9 +61,21 @@ export default function VerticalLinearStepper() {
         // console.log(formObject)
     };
 
+    const postDelivery = () =>{
+        axios({
+            method: "POST",
+            data:{
+                pickUpAddress:pickUpAddress,
+                pickUpPostcode:pickUpPostcode,
+                deliveryAddress:deliveryAddress,
+                deliveryPostcode:deliveryPostcode,
+                additionalInfo:additionalInfo,
+            },
+            url:"/api/delivery"
+        })
+    }
+
     const history = useHistory()
-
-
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -72,9 +90,9 @@ export default function VerticalLinearStepper() {
     }
     function handleFormSubmit(event) {
         event.preventDefault();
-        console.log(formObject)
-
-        handleNext()
+        console.log(formObject)     
+        postDelivery();
+        handleNext();
     }
 
     const handleBack = () => {

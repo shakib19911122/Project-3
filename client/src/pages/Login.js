@@ -53,7 +53,7 @@ export default function SignIn() {
   // const { developerState, setDeveloperState } = useContext(DeveloperContext);
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
   const history = useHistory()
 
   const login = (e) => {
@@ -65,23 +65,44 @@ export default function SignIn() {
         password: loginPassword
       },
        withCredentials: true,
-       url: "/login",
-        }).then((res) => console.log(res));
-        getUser()
+       url: "/api/login",
+        }).then((res) => {
+          if (res.data.user.userType === "Sender"){
+            getSender()
+          } else {
+            getDriver()
+          }
+        });
+        
     };
   
-  const getUser = () =>{
+  const getSender = () =>{
     axios({
       method: "GET",
        withCredentials: true,
-       url: "/senderui/",
+       url: "/api/sender",
         }).then((res) => {
-          setData(res.data);
+          // setData(res.data);
           history.push('/senderui')
           console.log(res);
-
         })
   }
+
+  const getDriver = () =>{
+    axios({
+      method: "GET",
+       withCredentials: true,
+       url: "/api/driver",
+        }).then((res) => {
+          // setData(res.data);
+          history.push('/driverui')
+          console.log(res);
+        })
+  }
+
+
+ 
+        
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -135,7 +156,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="http://localhost:3000/signup" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

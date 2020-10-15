@@ -11,9 +11,10 @@ const user = new mongoose.Schema({
     },
     userType: {
         required: true,
-        type: [
-            "sender",
-            "driver"
+        type: String,
+        enum: [
+            "Sender",
+            "Driver"
         ]
     }
 });

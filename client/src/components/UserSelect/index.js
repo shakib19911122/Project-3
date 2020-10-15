@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UserSelect() {
+export default function UserSelect(props) {
   const classes = useStyles();
-  const [user, setUser] = React.useState("");
+  // const [user, setUser] = React.useState("");
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event) => {
-    setUser(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setUser(event.target.value);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -46,12 +46,12 @@ export default function UserSelect() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={user}
-          onChange={handleChange}
+          value={props.value}
+          onChange={props.onChange}
         >
           <MenuItem value=""></MenuItem>
-          <MenuItem value={10}>Sender</MenuItem>
-          <MenuItem value={20}>Driver</MenuItem>
+          <MenuItem value="Sender">Sender</MenuItem>
+          <MenuItem value="Driver">Driver</MenuItem>
         </Select>
       </FormControl>
     </div>

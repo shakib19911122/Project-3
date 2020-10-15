@@ -20,7 +20,7 @@ const delivery = new mongoose.Schema({
         required: true,
         default: ""
     },
-    AdditionalInfo: {
+    additionalInfo: {
         type: String,
         default: "",
     },

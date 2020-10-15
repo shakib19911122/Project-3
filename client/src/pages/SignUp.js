@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserSelect from "../components/UserSelect";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 
 function Copyright() {
   return (
@@ -52,6 +54,9 @@ export default function SignUp() {
   const classes = useStyles();
   const [sighUpEmail, setSignUpEmail] = useState("");
   const [sighUpPassword, setSignUpPassword] = useState("");
+  const [userExist, setUserExist] = useState("");
+  const [userType, setUserType] = useState("");
+  const history = useHistory();
   
   const signUpUser = (e) => {
     e.preventDefault()
@@ -60,10 +65,23 @@ export default function SignUp() {
       data: {
         email: sighUpEmail,
         password: sighUpPassword,
+        userType: userType
       },
       withCredentials: true,
       url: "/signup",
-    }).then((res) => console.log(res));
+      
+    }).then((res) => {
+      
+      console.log(res)
+      if (res.data === "User Already Exists"){
+        setUserExist("User Already Exists");
+        setSignUpEmail("");
+        setSignUpPassword("");
+      } else {
+        history.push("/")
+      }
+    });
+
   };
  
 
@@ -82,6 +100,7 @@ export default function SignUp() {
      
             <Grid item xs={12}>
               <TextField
+                value={sighUpEmail}
                 onChange={e => setSignUpEmail(e.target.value)}
                 variant="outlined"
                 required
@@ -94,6 +113,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={sighUpPassword}
                 onChange={e => setSignUpPassword(e.target.value)}
                 variant="outlined"
                 required
@@ -104,10 +124,13 @@ export default function SignUp() {
                 // autoComplete="current-password"
               />
             </Grid>
+
             <UserSelect 
-            onChange={e => setSignUpPassword(e.target.value)}
-            
+            onChange={e => setUserType(e.target.value)}
+            value={userType}
+           
             />
+
           </Grid>
           <Button
             onClick={signUpUser}
@@ -127,6 +150,8 @@ export default function SignUp() {
             </Grid>
           </Grid>
         </form>
+  <h3>{userExist}</h3>
+        
       </div>
       <Box mt={5}>
         <Copyright />

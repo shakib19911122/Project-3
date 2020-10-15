@@ -31,11 +31,9 @@ function SenderUI() {
           </div>
         </Container>
         <Container>
-          <h3>Pending delivery</h3>
+          <h3>Delivery Status</h3>
         </Container>
-        <Container>
-          <h3>Total Driver</h3>
-        </Container>
+       
       </Grid>
     </div>
   );
