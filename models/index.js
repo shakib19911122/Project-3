@@ -1,6 +1,6 @@
 module.exports = {
-    delivery: require("./Delivery"),
-    job:require("./job"),
-    user:require("./user")
+    Delivery: require("./delivery"),
+    Job:require("./job"),
+    User:require("./user")
     
   };

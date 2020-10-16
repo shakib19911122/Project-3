@@ -43,11 +43,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function VerticalLinearStepper() {
-    const [pickUpAddress, setPickUpAddress] = useState("");
-    const [pickUpPostcode, setPickUpPostcode] = useState("");
-    const [deliveryAddress, setDeliveryAddress] = useState("");
-    const [deliveryPostcode, setDeliveryPostcode] = useState("");
-    const [additionalInfo, setAdditionalInfo] = useState("");
+    // const [pickUpAddress, setPickUpAddress] = useState("");
+    // const [pickUpPostcode, setPickUpPostcode] = useState("");
+    // const [deliveryAddress, setDeliveryAddress] = useState("");
+    // const [deliveryPostcode, setDeliveryPostcode] = useState("");
+    // const [additionalInfo, setAdditionalInfo] = useState("");
    
 
     const [formObject, setFormObject] = useState({})
@@ -55,22 +55,16 @@ export default function VerticalLinearStepper() {
     function handleInputChange(event) {
         // console.log(event)
         // console.log(event.target.value)
-        // console.log(event.target.id)
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
+        // console.log(value)
         // console.log(formObject)
     };
 
-    const postDelivery = () =>{
+    const postDelivery = (data) =>{
         axios({
             method: "POST",
-            data:{
-                pickUpAddress:pickUpAddress,
-                pickUpPostcode:pickUpPostcode,
-                deliveryAddress:deliveryAddress,
-                deliveryPostcode:deliveryPostcode,
-                additionalInfo:additionalInfo,
-            },
+            data: data,
             url:"/api/delivery"
         })
     }
@@ -91,8 +85,9 @@ export default function VerticalLinearStepper() {
     function handleFormSubmit(event) {
         event.preventDefault();
         console.log(formObject)     
-        postDelivery();
+        postDelivery(formObject);
         handleNext();
+        
     }
 
     const handleBack = () => {
@@ -116,7 +111,7 @@ export default function VerticalLinearStepper() {
                     <form>
                         <div>
                             <TextField
-                                name="PickUpAddress"
+                                name="pickUpAddress"
                                 onChange={handleInputChange}
                                 required
                                 id="pickUpAddress"
@@ -129,7 +124,7 @@ export default function VerticalLinearStepper() {
                         </div>
                         <div>
                             <TextField
-                                name="PickUpPostcode"
+                                name="pickUpPostcode"
                                 onChange={handleInputChange}
                                 required
                                 id="pickUpPostcode"
@@ -147,7 +142,7 @@ export default function VerticalLinearStepper() {
                     <div>
                         <div>
                             <TextField
-                                name="DeliveryUpAddress"
+                                name="deliveryAddress"
                                 onChange={handleInputChange}
                                 required
                                 id="deliveryAddress"
@@ -157,7 +152,7 @@ export default function VerticalLinearStepper() {
                         </div>
                         <div>
                             <TextField
-                                name="DeliveryPostcode"
+                                name="deliveryPostcode"
                                 onChange={handleInputChange}
                                 required
                                 id="deliveryPostcode"
@@ -176,6 +171,7 @@ export default function VerticalLinearStepper() {
 
                         <div>
                             <Dimension
+                                name="dimension"
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -187,7 +183,7 @@ export default function VerticalLinearStepper() {
                                 id="deliveryTime"
                             />
                             <TextField
-                                name="info"
+                                name="additionalInfo"
                                 onChange={handleInputChange}
                                 id="info"
                                 label="Additional-Info"

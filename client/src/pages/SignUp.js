@@ -68,7 +68,7 @@ export default function SignUp() {
         userType: userType
       },
       withCredentials: true,
-      url: "/signup",
+      url: "/api/signup",
       
     }).then((res) => {
       
