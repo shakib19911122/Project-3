@@ -3,7 +3,8 @@ import NavBar from "../components/NavBar"
 import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from "react-router-dom";
-
+// import axios from 'axios'
+import DeliveryDataArea from '../components/DeliveryDataArea'
 
 
 function SenderUI() {
@@ -27,12 +28,17 @@ function SenderUI() {
           <button
           onClick={addDelivery}
           >add delivery</button>
+          
+          <DeliveryDataArea/>
+
+
+          
          
           </div>
         </Container>
-        <Container>
+        {/* <Container>
           <h3>Delivery Status</h3>
-        </Container>
+        </Container> */}
        
       </Grid>
     </div>

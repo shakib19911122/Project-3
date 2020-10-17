@@ -9,19 +9,6 @@ const JobSchema = new mongoose.Schema({
 
     },
 
-    Length: {
-        type: Number
-    },
-    Width: {
-        type: Number
-    },
-    Height: {
-        type: Number
-    },
-    timeFrame: {
-        type: Number,
-        required: true
-    },
 
     assignedDriverID: {
         type: Number

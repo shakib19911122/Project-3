@@ -63,6 +63,7 @@ router.post("/api/delivery", (req,res)=>{
 
 
   router.get("/api/delivery", (req,res)=>{
+    console.log("get API")
     db.Delivery.find({}).then((data)=>{
       console.log(data)
       res.json(data);
@@ -77,11 +78,26 @@ router.post("/api/delivery", (req,res)=>{
 
 
 // -----------------------------Job route --------------------------
+router.post("/api/job", (req,res)=>{
+  console.log(req.body)
+  db.Job.create(req.body)
+    .then((dbJob) => {
+          res.json(dbJob)
+        }).catch (err => {
+          res.json(err);
+      });
+  });
 
 
-
-
-
+  router.get("/api/job", (req,res)=>{
+    console.log("get API")
+    db.Job.find({}).then((data)=>{
+      console.log(data)
+      res.json(data);
+    }). catch(err =>{
+      res.status(401).json(err);
+    });
+  })
 
 
 // -----------------------------End of job route --------------------------

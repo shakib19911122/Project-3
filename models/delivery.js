@@ -20,6 +20,12 @@ const delivery = new mongoose.Schema({
         required: true,
         default: ""
     },
+
+    timeFrame: {
+        type: Number,
+        required: true
+    },
+    
     additionalInfo: {
         type: String,
         default: "",
