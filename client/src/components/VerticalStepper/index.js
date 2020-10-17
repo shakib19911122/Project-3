@@ -99,7 +99,7 @@ export default function VerticalLinearStepper() {
         console.log(formObject);
         // console.log(jobObject);  
         postDelivery(formObject);
-        // postJob(formObject);
+        postJob(formObject);
         handleNext();
         
     }

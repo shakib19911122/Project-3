@@ -36,9 +36,6 @@ function SenderUI() {
          
           </div>
         </Container>
-        {/* <Container>
-          <h3>Delivery Status</h3>
-        </Container> */}
        
       </Grid>
     </div>

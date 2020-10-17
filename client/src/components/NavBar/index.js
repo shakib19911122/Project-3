@@ -12,6 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useHistory} from "react-router-dom";
+// import axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NavBar() {
+
+  // const [userName, setUserName] = useState(null)
+  // const getUser = () =>{
+  //   axios({
+  //     method: "GET",
+  //      withCredentials: true,
+  //      url: "/api/sender",
+  //       }).then((res) => {
+  //         setUserName(res.data);
+  //         console.log(res);
+  //       })
+  // }
+  // getUser()
+
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -70,7 +85,7 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Hi : (user ID)
+            Hi 
           </Typography>
           {auth && (
             <div>

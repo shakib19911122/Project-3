@@ -4,6 +4,7 @@ import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
 
 
+
 function SenderUI() {
 
   return (
@@ -17,13 +18,18 @@ function SenderUI() {
       >
 
         <Container>
+          <h3>Choose a Job</h3>
+          <button>confrim</button>
+          
+        </Container>
+        
+        <Container>
           <h3>Current Job</h3>
+          <button>completed</button>
         </Container>
+        
         <Container>
-          <h3>Task complete</h3>
-        </Container>
-        <Container>
-          <h3>choose a Job</h3>
+          <h3>complete Job</h3>
         </Container>
 
 

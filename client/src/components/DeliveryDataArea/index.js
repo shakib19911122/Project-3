@@ -38,11 +38,11 @@ function createData(
       Status };
 }
 
-const rows = [
-   
-  createData('222 king st', 3000, "123 king st", 3000, "ASAP", "Fragile"),
 
-];
+   
+  createData()
+
+
 
 export default function BasicTable() {
 const [deliveryList, setDeliveryList] = useState(null)
@@ -92,7 +92,7 @@ const [deliveryList, setDeliveryList] = useState(null)
                <TableCell align="right">{row.timeFrame}</TableCell>
                <TableCell align="right">{row.additionalInfo}</TableCell>
                {/* <TableCell align="right">{row}</TableCell> */}
-               
+               {/* <TableCell align="right">{row}</TableCell>  */}
             </TableRow>
           ))}
         </TableBody>
