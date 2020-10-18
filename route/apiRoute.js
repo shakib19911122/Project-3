@@ -72,17 +72,33 @@ router.post("/api/delivery", (req,res)=>{
     });
   })
 
-  router.put('api/delivery', (req,res)=>{
-    db.Delivery.findByIdAndUpdate(req.body.id, {deliveryStatus: req.body.deliveryStatus})
-    console.log("this is the id")
-    console.log(req.body.id)
-    .then((dbJob) => {
-          res.json(dbJob)
-        }).catch (err => {
-          res.json(err);
+  // router.put('api/delivery', (req,res)=>{
+  //   db.Delivery.findByIdAndUpdate(req.body.id, {deliveryStatus: req.body.deliveryStatus})
+  //   console.log("this is the id")
+  //   console.log(req.body.id)
+  //   .then((dbJob) => {
+  //         res.json(dbJob)
+  //       }).catch (err => {
+  //         res.json(err);
+  //     });
+
+
+  // })
+
+  // method 2
+  router.put("/api/delivery", (req,res)=>{
+    console.log("put API")
+    console.log(req.body);
+    for(const [id, status] of Object.entries(req.body)) {
+      db.Delivery.findByIdAndUpdate(id, {
+        deliveryStatus: status
+      }).then((data)=>{
+        console.log(data)
+        res.json(data);
+      }). catch(err =>{
+        res.status(401).json(err);
       });
-
-
+    }
   })
 
 

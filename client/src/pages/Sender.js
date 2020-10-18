@@ -5,9 +5,19 @@ import Grid from '@material-ui/core/Grid';
 import { useHistory } from "react-router-dom";
 // import axios from 'axios'
 import DeliveryDataArea from '../components/DeliveryDataArea'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 
 function SenderUI() {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+  const classes = useStyles();
   const history = useHistory()
   const addDelivery = () =>{
     history.push("/adddeliveries")
@@ -24,14 +34,16 @@ function SenderUI() {
       >
         <Container>
           
-          <h3>Delivery</h3>
-          <button
+          <h3 style={{color: "black"}}>Delivery</h3>
+          <div className={classes.root}>
+          <Button variant="contained"
           onClick={addDelivery}
-          >add delivery</button>
+          >add delivery</Button>
+          </div>
             <DeliveryDataArea/>
         </Container>
         <Container>
-          <h3>Complete Job</h3>
+          <h3 style={{color: "black"}}>Complete Job</h3>
         </Container>
        
       </Grid>

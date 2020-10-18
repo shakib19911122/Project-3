@@ -13,7 +13,6 @@ export default function Checkboxes(props) {
     <div>
       <Checkbox
         name={props.name}
-        // onclick={props.onClick}
         checked={checked}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'primary checkbox' }}

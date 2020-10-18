@@ -8,20 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkboxes from '../CheckBox'
-import axios from 'axios'
-// import { Checkbox } from '@material-ui/core';
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
 });
-
-//-----------------API call------------
-    
-
-//-------------------------------------
-
 function createData(
     PickUpAddress, 
     PickUpPostcode, 
@@ -30,7 +22,6 @@ function createData(
     TimeFrame, 
     AdditionalInfo, 
     Status) {
-
   return { 
       PickUpAddress, 
       PickUpPostcode, 
@@ -40,50 +31,33 @@ function createData(
       AdditionalInfo, 
       Status };
 }
-
-
-   
   createData()
-
-
-
-export default function BasicTable() {
-const [delivyStatus, setDeliveryStatus] = useState()
-const [deliveryList, setDeliveryList] = useState(null)
-const classes = useStyles();
-
+export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask this
+  const [deliveryList, setDeliveryList] = useState(null)
+  const classes = useStyles();
   function handelTickBoxChange (event){
-    if (event.target.checked === true){
-    // console.log(event.target.checked)
-    const { name, value } = event.target;
-    console.log (name)
-    setDeliveryStatus({...delivyStatus, [name]: value})
+    const { name, value, checked } = event.target;
+    if(checked === true) {
+      setDeliveryStatus({...delivyStatus, [name]: "Delivering"})
+    }
+    else {
+      const {name, ...newDeliveries } = delivyStatus
+      setDeliveryStatus(newDeliveries);
     }
   }
-
-  // function updateDeliveryStatus(event){
-
-  // }
-
   const fetchDeliveries = () =>{
     const apiURL = ('/api/delivery')
-  fetch(apiURL)
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-    setDeliveryList(data)
-    
-  });
-
-}
-
+    fetch(apiURL)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setDeliveryList(data)
+    });
+  }
   useEffect(()=>{
     fetchDeliveries()
-  },[])
-
-
+  },[delivyStatus])
   return (
-    
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -95,12 +69,10 @@ const classes = useStyles();
             <TableCell>Time-Frame</TableCell>
             <TableCell>Additional info</TableCell>
             <TableCell>Status (pending, Delivered)</TableCell>
-         
           </TableRow>
         </TableHead>
         <TableBody >
           {deliveryList && deliveryList.map((row) => {
-            // console.log(row._id);
             return(
               <TableRow  key={row.pickUpAddress}>
                 <TableCell component="th" scope="row">

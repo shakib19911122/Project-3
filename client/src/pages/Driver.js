@@ -1,32 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 import NavBar from "../components/NavBar"
 import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
 import DeliveryDataArea from '../components/DeliveryDataArea'
-import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 
 
 function SenderUI() {
 
-  const updateStatus = ()=>{
-    axios({
-      method: 'PUT',
-      data:{
-        id: ""
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
       },
-      deliveryStatus: "Delivering",
-      url: "/api/delivery"
-       }
-    )}
-  
-  
-  function handleStatusSubmit(event){
-    updateStatus(event)
-
+    },
+  }));
+  const classes = useStyles();
+  const [delivyStatus, setDeliveryStatus] = useState([])
+  const updateDelivery = () => {
+    const apiURL = ('/api/delivery')
+    fetch(apiURL, {
+      body: JSON.stringify(delivyStatus),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'PUT',
+    })
   }
-
   return (
+
+    
     <div>
       <NavBar />
       <br />
@@ -35,31 +40,29 @@ function SenderUI() {
         direction="row"
         justify="center"
       >
-
         <Container>
-          <h3>Choose a Job</h3>
-          <button
-          onClick={handleStatusSubmit}
-          >confrim</button>
-          <DeliveryDataArea/>
-          
+          <h3 style={{color: "black"}}>Choose a Job</h3>
+          <div className={classes.root}>
+          <Button variant="contained"
+            onClick={updateDelivery}
+          >
+            Confirm
+          </Button>
+          </div>
+          <DeliveryDataArea
+            delivyStatus={delivyStatus}
+            setDeliveryStatus={setDeliveryStatus}
+          />
         </Container>
-        
         <Container>
-          <h3>Current Job</h3>
-          <button>completed</button>
+          <h3 style={{color: "black"}}>Current Job</h3>
+          <Button variant="contained">completed</Button>
         </Container>
-        
         <Container>
-          <h3>complete Job</h3>
+          <h3 style={{color: "black"}}>complete Job</h3>
         </Container>
-
-
       </Grid>
-
     </div>
   );
 }
-
-
 export default SenderUI
