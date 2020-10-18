@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkboxes from '../CheckBox'
+// import axios from 'axios'
 // import { Checkbox } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -47,11 +48,22 @@ function createData(
 
 
 export default function BasicTable() {
-const updataDeliveryStatus = ()=>{
-  
-}
+const [delivyStatus, setDeliveryStatus] = useState()
 const [deliveryList, setDeliveryList] = useState(null)
   const classes = useStyles();
+
+ 
+
+  function handelTickBoxChange (event){
+    console.log(event.target.checked)
+    const { name, value } = event.target;
+    setDeliveryStatus({...delivyStatus, [name]: value})
+    
+  }
+
+  // function updateDeliveryStatus(event){
+
+  // }
 
   const fetchDeliveries = () =>{
     const apiURL = ('/api/delivery')
@@ -98,7 +110,10 @@ const [deliveryList, setDeliveryList] = useState(null)
                <TableCell align="right">{row.additionalInfo}</TableCell>
                <TableCell align="right">{row.deliveryStatus}</TableCell>
                {
-               <Checkboxes/>
+               <Checkboxes
+                name={row._id}
+                onClick={handelTickBoxChange}
+               />
               }
               
             </TableRow>

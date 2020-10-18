@@ -72,6 +72,19 @@ router.post("/api/delivery", (req,res)=>{
     });
   })
 
+  router.put('api/delivery', (req,res)=>{
+    db.Delivery.findByIdAndUpdate(req.body.id, {deliveryStatus: req.body.deliveryStatus})
+    console.log("this is the id")
+    console.log(req.body.id)
+    .then((dbJob) => {
+          res.json(dbJob)
+        }).catch (err => {
+          res.json(err);
+      });
+
+
+  })
+
 
 
 // -----------------------------End of delivery route --------------------------

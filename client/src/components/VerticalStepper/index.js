@@ -49,7 +49,7 @@ export default function VerticalLinearStepper() {
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
         // console.log(event)
-        // console.log(event.target.value)
+        console.log(event.target.value)
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
         setJobObject({...jobObject, [name]: value})
@@ -71,15 +71,6 @@ export default function VerticalLinearStepper() {
             url:"/api/job"
         })
     }
-
-    // this will handel the timeframe, job ID and the driver ID 
-    // const postJobInfo = (data) =>{
-    //     axios({
-    //         method: "POST",
-    //         data: data,
-    //         url:"/api/delivery"
-    //     })
-    // }
 
     const history = useHistory()
     const classes = useStyles();
