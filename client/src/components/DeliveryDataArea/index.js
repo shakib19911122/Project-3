@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkboxes from '../CheckBox'
-// import axios from 'axios'
+import axios from 'axios'
 // import { Checkbox } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -50,15 +50,15 @@ function createData(
 export default function BasicTable() {
 const [delivyStatus, setDeliveryStatus] = useState()
 const [deliveryList, setDeliveryList] = useState(null)
-  const classes = useStyles();
-
- 
+const classes = useStyles();
 
   function handelTickBoxChange (event){
-    console.log(event.target.checked)
+    if (event.target.checked === true){
+    // console.log(event.target.checked)
     const { name, value } = event.target;
+    console.log (name)
     setDeliveryStatus({...delivyStatus, [name]: value})
-    
+    }
   }
 
   // function updateDeliveryStatus(event){
@@ -83,6 +83,7 @@ const [deliveryList, setDeliveryList] = useState(null)
 
 
   return (
+    
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -98,26 +99,28 @@ const [deliveryList, setDeliveryList] = useState(null)
           </TableRow>
         </TableHead>
         <TableBody >
-          {deliveryList && deliveryList.map((row) => (
-            <TableRow  key={row.pickUpAddress}>
-              <TableCell component="th" scope="row">
-                {row.pickUpAddress}
-              </TableCell>
-              <TableCell align="right">{row.pickUpPostcode}</TableCell>
-              <TableCell align="right">{row.deliveryAddress}</TableCell> 
-               <TableCell align="right">{row.deliveryPostcode}</TableCell>
-               <TableCell align="right">{row.timeFrame}</TableCell>
-               <TableCell align="right">{row.additionalInfo}</TableCell>
-               <TableCell align="right">{row.deliveryStatus}</TableCell>
-               {
-               <Checkboxes
-                name={row._id}
-                onClick={handelTickBoxChange}
-               />
-              }
-              
-            </TableRow>
-          ))}
+          {deliveryList && deliveryList.map((row) => {
+            // console.log(row._id);
+            return(
+              <TableRow  key={row.pickUpAddress}>
+                <TableCell component="th" scope="row">
+                  {row.pickUpAddress}
+                </TableCell>
+                <TableCell align="right">{row.pickUpPostcode}</TableCell>
+                <TableCell align="right">{row.deliveryAddress}</TableCell> 
+                <TableCell align="right">{row.deliveryPostcode}</TableCell>
+                <TableCell align="right">{row.timeFrame}</TableCell>
+                <TableCell align="right">{row.additionalInfo}</TableCell>
+                <TableCell align="right">{row.deliveryStatus}</TableCell>
+                {
+                <Checkboxes
+                  name={row._id}
+                  onClick={handelTickBoxChange}
+                />
+                }
+              </TableRow>
+            )
+          })}
         </TableBody>
       </Table>
     </TableContainer>

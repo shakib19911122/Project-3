@@ -69,8 +69,10 @@ export default function SignIn() {
         }).then((res) => {
           if (res.data.user.userType === "Sender"){
             getSender()
-          } else {
+          } else if (res.data.user.userType === "Driver") {
             getDriver()
+          } else {
+            res.send(404)
           }
         });
         

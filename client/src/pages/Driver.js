@@ -13,7 +13,7 @@ function SenderUI() {
     axios({
       method: 'PUT',
       data:{
-        id: "5f8b8e7f95670e0aa81de94d"
+        id: ""
       },
       deliveryStatus: "Delivering",
       url: "/api/delivery"
@@ -22,7 +22,7 @@ function SenderUI() {
   
   
   function handleStatusSubmit(event){
-    updateStatus()
+    updateStatus(event)
 
   }
 
