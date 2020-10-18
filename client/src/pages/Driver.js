@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../components/NavBar"
 import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
+import DeliveryDataArea from '../components/DeliveryDataArea'
 
 
 
@@ -20,6 +21,7 @@ function SenderUI() {
         <Container>
           <h3>Choose a Job</h3>
           <button>confrim</button>
+          <DeliveryDataArea/>
           
         </Container>
         

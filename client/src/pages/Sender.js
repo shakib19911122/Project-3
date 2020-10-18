@@ -23,18 +23,12 @@ function SenderUI() {
       justify="center"
       >
         <Container>
-          <div>
+          
           <h3>Delivery</h3>
           <button
           onClick={addDelivery}
           >add delivery</button>
-          
-          <DeliveryDataArea/>
-
-
-          
-         
-          </div>
+            <DeliveryDataArea/>
         </Container>
        
       </Grid>

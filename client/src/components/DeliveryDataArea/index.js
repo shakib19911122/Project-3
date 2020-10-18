@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Checkboxes from '../CheckBox'
+// import { Checkbox } from '@material-ui/core';
 
 const useStyles = makeStyles({
   table: {
@@ -45,6 +47,9 @@ function createData(
 
 
 export default function BasicTable() {
+const updataDeliveryStatus = ()=>{
+  
+}
 const [deliveryList, setDeliveryList] = useState(null)
   const classes = useStyles();
 
@@ -80,9 +85,9 @@ const [deliveryList, setDeliveryList] = useState(null)
          
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody >
           {deliveryList && deliveryList.map((row) => (
-            <TableRow key={row.pickUpAddress}>
+            <TableRow  key={row.pickUpAddress}>
               <TableCell component="th" scope="row">
                 {row.pickUpAddress}
               </TableCell>
@@ -91,8 +96,11 @@ const [deliveryList, setDeliveryList] = useState(null)
                <TableCell align="right">{row.deliveryPostcode}</TableCell>
                <TableCell align="right">{row.timeFrame}</TableCell>
                <TableCell align="right">{row.additionalInfo}</TableCell>
-               {/* <TableCell align="right">{row}</TableCell> */}
-               {/* <TableCell align="right">{row}</TableCell>  */}
+               <TableCell align="right">{row.deliveryStatus}</TableCell>
+               {
+               <Checkboxes/>
+              }
+              
             </TableRow>
           ))}
         </TableBody>

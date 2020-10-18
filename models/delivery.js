@@ -32,6 +32,14 @@ const delivery = new mongoose.Schema({
     },
 
 
+    deliveryStatus: {
+        type: String,
+        enum: ["looking for Driver", "Delivering", "Delivered"],
+        default: "looking for Driver"
+       
+    }
+
+
 
 });
 
