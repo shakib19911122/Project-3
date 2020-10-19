@@ -50,10 +50,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function SignIn() {
   const classes = useStyles();
-  // const { developerState, setDeveloperState } = useContext(DeveloperContext);
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  // const [data, setData] = useState(null);
   const history = useHistory()
 
   const login = (e) => {
@@ -96,15 +94,10 @@ export default function SignIn() {
        withCredentials: true,
        url: "/api/driver",
         }).then((res) => {
-          // setData(res.data);
           history.push('/driverui')
           console.log(res);
         })
   }
-
-
- 
-        
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -130,7 +123,6 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              // onChange={handleUserChange}
             />
             <TextField
               onChange={e => setLoginPassword(e.target.value)}
@@ -143,7 +135,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              // onChange={handlePassChange}
             />
             <Button
               onClick={login}
@@ -152,7 +143,6 @@ export default function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // onClick={handleSubmit}
             >
               Sign In
             </Button>

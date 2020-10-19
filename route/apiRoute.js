@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
 const User = require("../models/user");
-// const Delivery = require("../models/delivery");
 const passport = require("passport");
 const bcrypt = require('bcrypt');
 
@@ -21,7 +20,6 @@ router.post("/api/login", (req, res) => {
 });
 
 router.post("/api/signup", (req, res) => {
-  // console.log(req.body)
   User.findOne({ email: req.body.email }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("User Already Exists");
@@ -41,9 +39,7 @@ router.post("/api/signup", (req, res) => {
 
 
 router.get("/api/sender", (req, res) => {
-  res.send(req.user.id); // Method 1: using the authenticated user that is given to us by passport. User a route like /api/sender for this method.
-  //console.log(req.params.id) // Method 2: using a query paramter, in this case /api/sender/12345678 would make req.params.id be 12345678. Use a route like /api/sender/:id for this method.
-  
+  res.send(req.user.id); 
 });
 
 router.get("/api/driver", (req, res) => {
@@ -73,20 +69,6 @@ router.post("/api/delivery", (req,res)=>{
     });
   })
 
-  // router.put('api/delivery', (req,res)=>{
-  //   db.Delivery.findByIdAndUpdate(req.body.id, {deliveryStatus: req.body.deliveryStatus})
-  //   console.log("this is the id")
-  //   console.log(req.body.id)
-  //   .then((dbJob) => {
-  //         res.json(dbJob)
-  //       }).catch (err => {
-  //         res.json(err);
-  //     });
-
-
-  // })
-
-  // method 2
   router.put("/api/delivery", (req,res)=>{
     console.log("put API")
     console.log(req.body);

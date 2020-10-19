@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -108,7 +106,7 @@ export default function SignUp() {
                 id="email"
                 label="email"
                 placeholder="email"
-                // autoComplete="email"
+                
               />
             </Grid>
             <Grid item xs={12}>
@@ -121,7 +119,7 @@ export default function SignUp() {
                 label="password"
                 type="password"
                 id="password"
-                // autoComplete="current-password"
+              
               />
             </Grid>
 

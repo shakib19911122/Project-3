@@ -82,14 +82,11 @@ function SenderUI() {
           <Button 
           variant="contained"
           onClick={completeDeliveries}
-          // onClick={updateDelivery}
           >completed</Button>
           </div>
           <BasicTableDelivering
             completeDelivery={completeDelivery}
             setCompleteDelivery={setCompleteDelivery}
-          //  delivyStatus={delivyStatus}
-          //   setDeliveryStatus={setDeliveryStatus}
             />
         </Container>
             

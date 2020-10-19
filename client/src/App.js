@@ -1,5 +1,4 @@
 import React from "react";
-// import Testing from "./components/Testing/index";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/Login";
 import SenderUI from "./pages/Sender";
