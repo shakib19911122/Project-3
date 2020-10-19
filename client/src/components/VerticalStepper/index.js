@@ -8,10 +8,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-// import Dimension from "../Dimension"
 import TimeFrame from "../TimeFrame"
-// import { Container } from "@material-ui/core";
-// import API from "../../utils/API"
 import { useHistory } from "react-router-dom";
 import axios from "axios"
 
@@ -46,15 +43,10 @@ export default function VerticalLinearStepper() {
  
     const [jobObject, setJobObject] = useState({})
     const [formObject, setFormObject] = useState({})
-    // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
-        // console.log(event)
-        // console.log(event.target.value)
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
         setJobObject({...jobObject, [name]: value})
-        // console.log(value)
-        // console.log(formObject)
     };
 
     const postDelivery = (data) =>{
@@ -78,7 +70,6 @@ export default function VerticalLinearStepper() {
     const steps = getSteps();
 
     const handleNext = () => {
-        // console.log('Handle next step')
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
     const backToHomePage = () =>{
@@ -88,7 +79,6 @@ export default function VerticalLinearStepper() {
     function handleFormSubmit(event) {
         event.preventDefault();
         console.log(formObject);
-        // console.log(jobObject);  
         postDelivery(formObject);
         postJob(formObject);
         handleNext();
@@ -122,7 +112,6 @@ export default function VerticalLinearStepper() {
                                 id="pickUpAddress"
                                 label="Address"
                                 placeholder="Pick-up address"
-                                // value={formObject.Address}
 
                             />
 

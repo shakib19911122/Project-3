@@ -2,8 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import axios from "axios";
-// import { grey } from '@material-ui/core/colors';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Container(props) {
     const classes = useStyles();
 
-    // axios.get('http://localhost:3001/packages')
-    //     .then((response) => console.log(response))
+
 
     return (
         <div className={classes.root}>

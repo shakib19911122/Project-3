@@ -36,7 +36,7 @@ function createData(
 
 createData()
 
-export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask this
+export default function BasicTable({ delivyStatus, setDeliveryStatus }) { 
   const [deliveryList, setDeliveryList] = useState([])
   const [delivering, setDelivering] = useState([])
   const classes = useStyles();

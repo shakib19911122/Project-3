@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import Checkboxes from '../CheckBox'
+
 
 const useStyles = makeStyles({
   table: {
@@ -36,7 +36,7 @@ function createData(
 
 createData()
 
-export default function BasicTableLookingDelivering({ delivyStatus, setDeliveryStatus }) { // ask this
+export default function BasicTableLookingDelivering({ delivyStatus, setDeliveryStatus }) { 
   const [deliveryList, setDeliveryList] = useState([])
   const [delivering, setDelivering] = useState([])
   const classes = useStyles();
@@ -94,12 +94,6 @@ export default function BasicTableLookingDelivering({ delivyStatus, setDeliveryS
                 <TableCell align="right">{row.timeFrame}</TableCell>
                 <TableCell align="right">{row.additionalInfo}</TableCell>
                 <TableCell align="right">{row.deliveryStatus}</TableCell>
-                {
-                // <Checkboxes
-                //   name={row._id}
-                //   onClick={handelTickBoxChange}
-                // />
-                }
               </TableRow>
             )
           })}
