@@ -16,6 +16,8 @@ const app = express();
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/delivery",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
 }, ()=>{
   console.log("Mongoose Connected")
 });
