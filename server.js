@@ -42,7 +42,7 @@ app.use(require("./route/apiRoute"))
 //-------------------End of Middleware-------------------------
 
 
-// app.use(require("./routes/api/index"));
+app.use(require("./route/apiRoute"));
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
 app.use(express.static("client/build"));
