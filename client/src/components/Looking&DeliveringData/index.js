@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Checkboxes from '../CheckBox'
+// import Checkboxes from '../CheckBox'
 
 const useStyles = makeStyles({
   table: {
@@ -36,7 +36,7 @@ function createData(
 
 createData()
 
-export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask this
+export default function BasicTableLookingDelivering({ delivyStatus, setDeliveryStatus }) { // ask this
   const [deliveryList, setDeliveryList] = useState([])
   const [delivering, setDelivering] = useState([])
   const classes = useStyles();
@@ -58,7 +58,7 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
     .then(res => res.json())
     .then(data => {
       setDeliveryList(data)
-      const deliveringJobs = data.filter(job => job.deliveryStatus === 'looking for Driver')
+      const deliveringJobs = data.filter(job => job.deliveryStatus === 'looking for Driver' || "Delivering")
       setDelivering(deliveringJobs)
     });
   }
@@ -95,10 +95,10 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
                 <TableCell align="right">{row.additionalInfo}</TableCell>
                 <TableCell align="right">{row.deliveryStatus}</TableCell>
                 {
-                <Checkboxes
-                  name={row._id}
-                  onClick={handelTickBoxChange}
-                />
+                // <Checkboxes
+                //   name={row._id}
+                //   onClick={handelTickBoxChange}
+                // />
                 }
               </TableRow>
             )

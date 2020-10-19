@@ -4,10 +4,11 @@ import Container from "../components/Container"
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from "react-router-dom";
 // import axios from 'axios'
-import DeliveryDataArea from '../components/DeliveryDataArea'
+// import DeliveryDataArea from '../components/DeliveryDataArea'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import BasicTableLookingDelivering from '../components/Looking&DeliveringData'
+import BasicTableDelivered from '../components/CompleteDataArea'
 
 function SenderUI() {
   const useStyles = makeStyles((theme) => ({
@@ -40,10 +41,11 @@ function SenderUI() {
           onClick={addDelivery}
           >add delivery</Button>
           </div>
-            <DeliveryDataArea/>
+            <BasicTableLookingDelivering/>
         </Container>
         <Container>
           <h3 style={{color: "black"}}>Complete Job</h3>
+          <BasicTableDelivered></BasicTableDelivered>
         </Container>
        
       </Grid>

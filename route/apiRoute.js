@@ -41,7 +41,7 @@ router.post("/api/signup", (req, res) => {
 
 router.get("/api/sender", (req, res) => {
   res.send(req.user.id); // Method 1: using the authenticated user that is given to us by passport. User a route like /api/sender for this method.
-  console.log(req.params.id) // Method 2: using a query paramter, in this case /api/sender/12345678 would make req.params.id be 12345678. Use a route like /api/sender/:id for this method.
+  //console.log(req.params.id) // Method 2: using a query paramter, in this case /api/sender/12345678 would make req.params.id be 12345678. Use a route like /api/sender/:id for this method.
   
 });
 
@@ -52,7 +52,7 @@ router.get("/api/driver", (req, res) => {
 // -----------------------------delivery route--------------------------
 
 router.post("/api/delivery", (req,res)=>{
-  console.log(req.body)
+  //console.log(req.body)
   db.Delivery.create(req.body)
     .then((dbDelivery) => {
           res.json(dbDelivery)
@@ -63,9 +63,9 @@ router.post("/api/delivery", (req,res)=>{
 
 
   router.get("/api/delivery", (req,res)=>{
-    console.log("get API")
+    //console.log("get API")
     db.Delivery.find({}).then((data)=>{
-      console.log(data)
+      //console.log(data)
       res.json(data);
     }). catch(err =>{
       res.status(401).json(err);

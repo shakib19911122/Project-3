@@ -36,7 +36,7 @@ function createData(
 
 createData()
 
-export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask this
+export default function BasicTableDelivering({ completeDelivery, setCompleteDelivery }) { // ask this
   const [deliveryList, setDeliveryList] = useState([])
   const [delivering, setDelivering] = useState([])
   const classes = useStyles();
@@ -44,11 +44,11 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
   function handelTickBoxChange (event){
     const { name, value, checked } = event.target;
     if(checked === true) {
-      setDeliveryStatus({...delivyStatus, [name]: "Delivering"})
+        setCompleteDelivery({...completeDelivery, [name]: "Delivered"})
     }
     else {
-      const {name, ...newDeliveries } = delivyStatus
-      setDeliveryStatus(newDeliveries);
+      const {name, ...newDeliveries2 } = completeDelivery
+      setCompleteDelivery(newDeliveries2);
     }
   }
 
@@ -58,14 +58,14 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
     .then(res => res.json())
     .then(data => {
       setDeliveryList(data)
-      const deliveringJobs = data.filter(job => job.deliveryStatus === 'looking for Driver')
+      const deliveringJobs = data.filter(job => job.deliveryStatus === 'Delivering')
       setDelivering(deliveringJobs)
     });
   }
 
   useEffect(()=>{
     fetchDeliveries()
-  },[delivyStatus])
+  },[completeDelivery])
 
   return (
     <TableContainer component={Paper}>

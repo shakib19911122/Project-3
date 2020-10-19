@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Checkboxes from '../CheckBox'
+// import Checkboxes from '../CheckBox'
 
 const useStyles = makeStyles({
   table: {
@@ -36,7 +36,7 @@ function createData(
 
 createData()
 
-export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask this
+export default function BasicTableDelivered({ jobDone, setJobDone }) { // ask this
   const [deliveryList, setDeliveryList] = useState([])
   const [delivering, setDelivering] = useState([])
   const classes = useStyles();
@@ -44,11 +44,11 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
   function handelTickBoxChange (event){
     const { name, value, checked } = event.target;
     if(checked === true) {
-      setDeliveryStatus({...delivyStatus, [name]: "Delivering"})
+        setJobDone({...jobDone, [name]: "Delivered"})
     }
     else {
-      const {name, ...newDeliveries } = delivyStatus
-      setDeliveryStatus(newDeliveries);
+      const {name, ...newDeliveries2 } = jobDone
+      setJobDone(newDeliveries2);
     }
   }
 
@@ -58,14 +58,14 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
     .then(res => res.json())
     .then(data => {
       setDeliveryList(data)
-      const deliveringJobs = data.filter(job => job.deliveryStatus === 'looking for Driver')
+      const deliveringJobs = data.filter(job => job.deliveryStatus === 'Delivered')
       setDelivering(deliveringJobs)
     });
   }
 
   useEffect(()=>{
     fetchDeliveries()
-  },[delivyStatus])
+  },[jobDone])
 
   return (
     <TableContainer component={Paper}>
@@ -94,12 +94,12 @@ export default function BasicTable({ delivyStatus, setDeliveryStatus }) { // ask
                 <TableCell align="right">{row.timeFrame}</TableCell>
                 <TableCell align="right">{row.additionalInfo}</TableCell>
                 <TableCell align="right">{row.deliveryStatus}</TableCell>
-                {
+                {/* {
                 <Checkboxes
                   name={row._id}
                   onClick={handelTickBoxChange}
                 />
-                }
+                } */}
               </TableRow>
             )
           })}
