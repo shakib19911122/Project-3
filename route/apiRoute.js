@@ -39,6 +39,7 @@ router.post("/api/signup", (req, res) => {
   });
 });
 
+
 router.get("/api/sender", (req, res) => {
   res.send(req.user.id); // Method 1: using the authenticated user that is given to us by passport. User a route like /api/sender for this method.
   //console.log(req.params.id) // Method 2: using a query paramter, in this case /api/sender/12345678 would make req.params.id be 12345678. Use a route like /api/sender/:id for this method.
