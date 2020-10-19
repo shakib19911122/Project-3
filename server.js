@@ -43,6 +43,9 @@ app.use(require("./route/apiRoute"))
 
 
 app.use(require("./route/apiRoute"));
+app.get("/signup", (req, res) => {
+  res.sendFile(__dirname+"/client/build/index.html")
+})
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
 app.use(express.static("client/build"));
